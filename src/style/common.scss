@@ -59,7 +59,31 @@ h6 {
     font-weight: 300;
 }
 .logo__wrapper {
+    padding: 10px 0;
     background: #fbfbfb 0% 0% no-repeat padding-box;
+    .search-bar {
+        input {
+            border: 1px solid #e1e1e1;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            padding: 20px;
+            margin: 0 !important;
+            outline: none;
+            width: 300px;
+        }
+        button {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background: $orange;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+        }
+    }
 }
 .nav-wrapper {
     background: #fbfbfb 0% 0% no-repeat padding-box;
