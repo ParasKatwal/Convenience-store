@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import ProductList from "./pages/ProductList";
 import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./pages/Checkout";
 // COMPONENTS
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
@@ -25,6 +26,7 @@ function App() {
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/productlist" component={ProductList} />
+                <Route exact path="/checkout" component={Checkout} />
                 <Route
                     exact
                     path="/productlist/:slug"
