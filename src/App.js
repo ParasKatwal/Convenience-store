@@ -4,6 +4,10 @@ import { Route, Switch } from "react-router-dom";
 // PAGES
 import Home from "./pages/Home";
 import Error from "./pages/Error";
+import SignIn from "./pages/SignIn";
+import Register from "./pages/Register";
+import ProductList from "./pages/ProductList";
+import ProductDetails from "./pages/ProductDetails";
 // COMPONENTS
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
@@ -18,6 +22,14 @@ function App() {
             <TopNav />
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/productlist" component={ProductList} />
+                <Route
+                    exact
+                    path="/productlist/:slug"
+                    component={ProductDetails}
+                />
                 <Route exact component={Error} />
             </Switch>
             <Footer />

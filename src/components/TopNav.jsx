@@ -42,7 +42,7 @@ function TopNav() {
                         <span className="pl-1">(+977) 123 456 7890</span>
                     </div>
                     <div className="log">
-                        <Link to={"/"}>
+                        <Link to={"/register"}>
                             <svg
                                 className="pr-1"
                                 width="14"
@@ -73,7 +73,7 @@ function TopNav() {
                             </svg>
                             Register
                         </Link>
-                        <Link className="ml-4" to={"/"}>
+                        <Link className="ml-4" to={"/signin"}>
                             <svg
                                 className="pr-1"
                                 width="15.83"
@@ -103,32 +103,65 @@ function TopNav() {
                             </svg>
                             Sign In
                         </Link>
+                        <Link className="ml-4" to={"/register"}>
+                            <svg
+                                className="pr-1"
+                                width="14"
+                                height="14"
+                                viewBox="0 0 14 14"
+                            >
+                                <defs>
+                                    <clipPath id="a">
+                                        <rect
+                                            className="a"
+                                            width="14"
+                                            height="14"
+                                        />
+                                    </clipPath>
+                                </defs>
+                                <g className="b">
+                                    <g className="c" transform="translate(0)">
+                                        <g transform="translate(0)">
+                                            <path
+                                                className="d"
+                                                d="M13.965,12a.547.547,0,0,0-1.071.223.571.571,0,0,1-.116.479.556.556,0,0,1-.437.208H1.66a.556.556,0,0,1-.437-.208.571.571,0,0,1-.116-.479A6.042,6.042,0,0,1,6.855,7.435l.145,0,.146,0A6.016,6.016,0,0,1,12,10.105a.547.547,0,1,0,.908-.609A7.113,7.113,0,0,0,9.227,6.7a3.719,3.719,0,1,0-4.451,0A7.113,7.113,0,0,0,.036,12,1.661,1.661,0,0,0,1.66,14H12.341a1.661,1.661,0,0,0,1.624-2ZM4.375,3.719A2.625,2.625,0,1,1,7.133,6.34H6.868A2.628,2.628,0,0,1,4.375,3.719Z"
+                                                transform="translate(0)"
+                                                fill="#ffffff"
+                                            />
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            Profile
+                        </Link>
                     </div>
                 </Container>
             </div>
             <div className="logo__wrapper">
                 <Container className="d-flex justify-content-between align-items-center">
                     <div className="nav__logo">
-                        <svg width="115" height="63" viewBox="0 0 115 63">
-                            <text
-                                id="CONVENIENCE_STORE"
-                                data-name="CONVENIENCE STORE"
-                                transform="translate(0 18)"
-                                fill="#303030"
-                                fontSize="17"
-                                fontFamily="Roboto-Black, Roboto"
-                                fontWeight="800"
-                            >
-                                <tspan x="0" y="0">
-                                    CONVENIENCE
-                                </tspan>
-                                <tspan fill="#fd7d2d" fontSize="36">
-                                    <tspan x="0" y="35">
-                                        STORE
+                        <Link to="/">
+                            <svg width="115" height="63" viewBox="0 0 115 63">
+                                <text
+                                    id="CONVENIENCE_STORE"
+                                    data-name="CONVENIENCE STORE"
+                                    transform="translate(0 18)"
+                                    fill="#303030"
+                                    fontSize="17"
+                                    fontFamily="Roboto-Black, Roboto"
+                                    fontWeight="800"
+                                >
+                                    <tspan x="0" y="0">
+                                        CONVENIENCE
                                     </tspan>
-                                </tspan>
-                            </text>
-                        </svg>
+                                    <tspan fill="#fd7d2d" fontSize="36">
+                                        <tspan x="0" y="35">
+                                            STORE
+                                        </tspan>
+                                    </tspan>
+                                </text>
+                            </svg>
+                        </Link>
                     </div>
                     <div className="search-bar">
                         <Form inline>
@@ -154,15 +187,13 @@ function TopNav() {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="m-auto">
-                                <Nav.Link href="#features">Food</Nav.Link>
-                                <Nav.Link href="#pricing">vegetable</Nav.Link>
-                                <Nav.Link href="#pricing">Soda</Nav.Link>
-                                <Nav.Link href="#pricing">Drink</Nav.Link>
-                                <Nav.Link href="#pricing">Chocolate</Nav.Link>
-                                <Nav.Link href="#pricing">Grocries</Nav.Link>
-                                <Nav.Link href="#pricing">
-                                    Beauty Products
-                                </Nav.Link>
+                                <Link to="/productlist">Food</Link>
+                                <Link to="/productlist">Vegetable</Link>
+                                <Link to="/productlist">Soda</Link>
+                                <Link to="/productlist">Drink</Link>
+                                <Link to="/productlist">Chocolate</Link>
+                                <Link to="/productlist">Grocries</Link>
+                                <Link to="/productlist">Beauty Products</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

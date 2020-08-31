@@ -7,7 +7,7 @@ import p1 from "../img/p1.png";
 function SingleProduct() {
     return (
         <>
-            <Link to="/">
+            <Link to="/productlist/one">
                 <div className="singleProduct">
                     <div className="singleProduct__img">
                         <img src={p1} alt="" />
