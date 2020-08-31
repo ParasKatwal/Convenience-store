@@ -53,7 +53,7 @@ h6 {
 
 // TOP NAV
 .top-header {
-    padding: 5px 0;
+    padding: 5px 0 8px 0;
     background: #474747;
     color: #ffffff;
     font-weight: 300;
@@ -84,6 +84,26 @@ h6 {
             padding: 10px 20px;
         }
     }
+    .cart {
+        height: 30px;
+        position: relative;
+        img {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+        }
+        .cart__number {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            span {
+                background: $orange;
+                color: #ffffff;
+                padding: 3px 8px;
+                border-radius: 50%;
+            }
+        }
+    }
 }
 .nav-wrapper {
     background: #fbfbfb 0% 0% no-repeat padding-box;
@@ -110,12 +130,109 @@ h6 {
         }
     }
     &__card {
+        .card {
+            padding: 20px;
+        }
         .card__item {
             display: flex;
+            align-items: center;
             img {
                 height: 30px;
                 width: 30px;
                 object-fit: contain;
+            }
+        }
+    }
+}
+
+.singleProduct {
+    padding: 10px 5px;
+    transition: 0.5s ease all;
+    &__img {
+        height: 250px;
+        width: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    p {
+        color: #303030;
+        padding: 10px 5px;
+    }
+    h3 {
+        color: #303030;
+        padding: 0 5px;
+    }
+}
+.singleProduct:hover {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 4px 10px #00000033;
+}
+
+.feature {
+    margin: 50px 0;
+}
+.title {
+    padding: 10px 0;
+    color: #646464;
+    border-bottom: 3px solid #fd7d2d;
+}
+
+footer {
+    background: #232323;
+    color: #ffffff;
+    padding: 30px 0 0 0;
+    h4 {
+        font-weight: 400;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    p {
+        margin-bottom: 5px;
+        font-weight: 400;
+    }
+    .subscribe {
+        text-align: center;
+        h3 {
+            font-weight: 500;
+            text-align: center;
+        }
+        h5 {
+            font-size: 16px;
+            color: #ffffff;
+            opacity: 0.8;
+            margin: 10px 0 20px 0;
+        }
+        .input-field {
+            text-align: center;
+            input {
+                border: none;
+                padding: 10px;
+            }
+            button {
+                background: $orange;
+                border: none;
+                color: #ffffff;
+                padding: 10px 25px;
+            }
+        }
+    }
+    .quick-link {
+        a {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+    .copy-right {
+        background: #1a1a1a;
+        .container {
+            display: flex;
+            justify-content: space-between;
+            p {
+                font-weight: 300;
+                padding: 10px 0;
             }
         }
     }
