@@ -9,6 +9,8 @@ import Register from "./pages/Register";
 import ProductList from "./pages/ProductList";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import AdminPanel from "./pages/AdminPanel";
+
 // COMPONENTS
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
@@ -27,6 +29,7 @@ function App() {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/productlist" component={ProductList} />
                 <Route exact path="/checkout" component={Checkout} />
+                <Route exact path="/adminpanel" component={AdminPanel} />
                 <Route
                     exact
                     path="/productlist/:slug"

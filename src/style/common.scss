@@ -360,3 +360,25 @@ footer {
         }
     }
 }
+
+.admin-panel {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    &__table {
+        .action-wrap {
+            display: flex;
+            button {
+            }
+        }
+    }
+    .form-wrapper {
+        width: 60%;
+        margin: 30px auto;
+        button {
+            background: $orange;
+            border: none;
+            color: #ffffff;
+            padding: 10px 30px;
+        }
+    }
+}
