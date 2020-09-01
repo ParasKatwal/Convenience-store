@@ -165,6 +165,11 @@ h6 {
         color: #303030;
         padding: 0 5px;
     }
+    button {
+        background: $orange;
+        color: #ffffff;
+        margin: 10px 0;
+    }
 }
 .singleProduct:hover {
     background: #ffffff 0% 0% no-repeat padding-box;
@@ -402,4 +407,8 @@ footer {
             font-weight: 400;
         }
     }
+}
+
+.cart-list {
+    margin: 50px 0;
 }

@@ -14,6 +14,9 @@ function SingleProduct() {
                     </div>
                     <p>Lenovo P8 Tab3 8 plus</p>
                     <h3>$329.99</h3>
+                    <div className="text-center">
+                        <button className="btn">Add to Cart</button>
+                    </div>
                 </div>
             </Link>
         </>

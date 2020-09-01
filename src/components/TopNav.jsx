@@ -174,10 +174,12 @@ function TopNav() {
                         </Form>
                     </div>
                     <div className="cart">
-                        <img src={cart} alt="" />
-                        <div className="cart__number">
-                            <span>1</span>
-                        </div>
+                        <Link to="/cartlist">
+                            <img src={cart} alt="" />
+                            <div className="cart__number">
+                                <span>1</span>
+                            </div>
+                        </Link>
                     </div>
                 </Container>
             </div>

@@ -11,6 +11,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import AdminPanel from "./pages/AdminPanel";
 import Profile from "./pages/Profile";
+import CartList from "./pages/CartList";
 
 // COMPONENTS
 import TopNav from "./components/TopNav";
@@ -32,6 +33,7 @@ function App() {
                 <Route exact path="/checkout" component={Checkout} />
                 <Route exact path="/adminpanel" component={AdminPanel} />
                 <Route exact path="/profile" component={Profile} />
+                <Route exact path="/cartlist" component={CartList} />
                 <Route
                     exact
                     path="/productlist/:slug"
