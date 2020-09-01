@@ -103,7 +103,7 @@ function TopNav() {
                             </svg>
                             Sign In
                         </Link>
-                        <Link className="ml-4" to={"/register"}>
+                        <Link className="ml-4" to={"/profile"}>
                             <svg
                                 className="pr-1"
                                 width="14"

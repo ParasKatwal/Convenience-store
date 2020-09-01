@@ -382,3 +382,24 @@ footer {
         }
     }
 }
+.profile {
+    margin: 50px 0;
+    &__img {
+        height: 300px;
+        width: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &__text {
+        h3 {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        h4 {
+            font-weight: 400;
+        }
+    }
+}

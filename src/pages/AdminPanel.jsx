@@ -15,6 +15,13 @@ function AdminPanel() {
                                     placeholder="Enter product name"
                                 />
                             </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter category name"
+                                />
+                            </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Price</Form.Label>
