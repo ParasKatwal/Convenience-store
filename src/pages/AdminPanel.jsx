@@ -15,7 +15,6 @@ function AdminPanel(props) {
   const [picture, setPicture] = useState();
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
-  console.log(typeof picture);
 
   useEffect(() => {
     (async function getItems() {
@@ -24,18 +23,14 @@ function AdminPanel(props) {
   }, []);
 
   const handleAddProduct = async () => {
-    const uploadedPicture = new FormData();
-    uploadedPicture.append("Picture", picture, picture.name);
-    console.log(uploadedPicture);
-    const productDetails = {
-      name,
-      description,
-      category,
-      price,
-      uploadedPicture,
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("price", price);
+    formData.append("picture", picture);
 
-    await addItem(productDetails).then((res) => console.log(res.data));
+    await addItem(formData).then((res) => console.log(res.data));
   };
 
   const handleDelete = async (productId) => {

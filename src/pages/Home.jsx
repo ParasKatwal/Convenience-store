@@ -11,6 +11,7 @@ import payment from "../img/payment.png";
 // COMPONENTS
 import ProductList from "./ProductList";
 import SingleProduct from "../components/SingleProduct";
+import FeaturedProducts from "../pages/FeaturedProducts";
 
 function Home(props) {
   return (
@@ -67,35 +68,7 @@ function Home(props) {
       </div>
       {props.userId && (
         <div className="feature">
-          <Container>
-            <h4 className="title">Featured Products</h4>
-            <Row className="pt-4">
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-              <Col className="pb-4" sm={12} md={3}>
-                <SingleProduct />
-              </Col>
-            </Row>
-          </Container>
+          <FeaturedProducts />
         </div>
       )}
     </>

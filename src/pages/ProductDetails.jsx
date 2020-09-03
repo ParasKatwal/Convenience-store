@@ -3,7 +3,6 @@ import sl from "../components/selector";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 // IMAGES
-import productImg from "../img/p1.png";
 import master from "../img/master.png";
 import visa from "../img/visa.png";
 import cash from "../img/visa.png";
@@ -67,7 +66,7 @@ function ProductDetails(props) {
             <h1 className="title">Description</h1>
             <p>{selectedProduct.description}</p>
             <div className="product-details__description__img">
-              <img src={productImg} alt="" />
+              <img src={`${BASE_URL}${selectedProduct.picture}`} alt="" />
             </div>
           </div>
           <div className="related-products">
