@@ -10,7 +10,9 @@ import cart from "../img/cart.png";
 function TopNav(props) {
   const handleLogOut = () => {
     props.logout();
-    localStorage.clear();
+    props.clearCartProduct();
+    localStorage.removeItem("cartedProduct");
+    localStorage.removeItem("userData");
   };
 
   const { userId, cartedProduct } = staticSelector.select(props);
@@ -134,33 +136,7 @@ function TopNav(props) {
                   </svg>
                   Profile
                 </Link>
-                <Link className="ml-4" to={"/productlist"}>
-                  <svg
-                    className="pr-1"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                  >
-                    <defs>
-                      <clipPath id="a">
-                        <rect className="a" width="14" height="14" />
-                      </clipPath>
-                    </defs>
-                    <g className="b">
-                      <g className="c" transform="translate(0)">
-                        <g transform="translate(0)">
-                          <path
-                            className="d"
-                            d="M13.965,12a.547.547,0,0,0-1.071.223.571.571,0,0,1-.116.479.556.556,0,0,1-.437.208H1.66a.556.556,0,0,1-.437-.208.571.571,0,0,1-.116-.479A6.042,6.042,0,0,1,6.855,7.435l.145,0,.146,0A6.016,6.016,0,0,1,12,10.105a.547.547,0,1,0,.908-.609A7.113,7.113,0,0,0,9.227,6.7a3.719,3.719,0,1,0-4.451,0A7.113,7.113,0,0,0,.036,12,1.661,1.661,0,0,0,1.66,14H12.341a1.661,1.661,0,0,0,1.624-2ZM4.375,3.719A2.625,2.625,0,1,1,7.133,6.34H6.868A2.628,2.628,0,0,1,4.375,3.719Z"
-                            transform="translate(0)"
-                            fill="#ffffff"
-                          />
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                  Products
-                </Link>
+
                 <Link to={"/"} className="ml-4" onClick={handleLogOut}>
                   <svg
                     className="pr-1"
@@ -266,6 +242,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     storeUserData: (requestBody) =>
       dispatch(actions.storeUserData(requestBody)),
+    clearCartProduct: () => dispatch(actions.clearCartProduct()),
     logout: () => dispatch(actions.logout()),
   };
 };

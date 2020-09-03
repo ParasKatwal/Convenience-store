@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 
 import sl from "../components/selector";
+import { BASE_URL } from "../constants";
 import * as actions from "../redux/actions";
 
-// IMAGES
-import p1 from "../img/p1.png";
-
 function Cart(props) {
-  const { cartedProduct } = staticSelector.select(props);
+  const { cartedProduct, clearCartProduct } = staticSelector.select(props);
+
+  const handlePayment = () => {
+    alert("Your payment is done.");
+    clearCartProduct();
+  };
 
   return (
     <>
@@ -20,7 +23,7 @@ function Cart(props) {
               <Table striped bordered hover>
                 <thead className="text-center">
                   <tr>
-                    <th>ITEMS Items</th>
+                    <th>ITEMS</th>
                     <th>PRICE</th>
                     <th>QUANITY</th>
                   </tr>
@@ -29,7 +32,7 @@ function Cart(props) {
                   {cartedProduct.map((product, key) => (
                     <tr>
                       <td className="name">
-                        <img src={p1} alt="" />
+                        <img src={`${BASE_URL}${product.picture}`} alt="" />
                         <p>{product.name}</p>
                       </td>
                       <td>${product.price}</td>
@@ -39,11 +42,7 @@ function Cart(props) {
                 </tbody>
               </Table>
               <div className="text-center">
-                <Button
-                  variant="primary"
-                  type="submit"
-                  //   onClick={handleAddToCart}
-                >
+                <Button variant="primary" type="submit" onClick={handlePayment}>
                   Proceed to payment
                 </Button>
               </div>
@@ -66,6 +65,7 @@ const staticSelector = sl.object({
       price: sl.number(),
     })
   ),
+  clearCartProduct: sl.func(),
 });
 
 const mapStateToProps = (state) => {
@@ -74,4 +74,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearCartProduct: () => dispatch(actions.clearCartProduct()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -1,147 +1,185 @@
-import React from "react";
+import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { Container, Table, Button, Form } from "react-bootstrap";
 
-function AdminPanel() {
-    return (
-        <div className="admin-panel">
-            <Container>
-                <div className="admin-panel__add">
-                    <div className="form-wrapper">
-                        <Form>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Product Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter product name"
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Category</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter category name"
-                                />
-                            </Form.Group>
+import { getAllItems, addItem, deleteItem } from "../api";
+import sl from "../components/selector";
+import * as actions from "../redux/actions";
 
-                            <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="enter price"
-                                />
-                            </Form.Group>
-                            <div className="input-group mt-4 mb-5">
-                                <div className="input-group-prepend">
-                                    <span
-                                        className="input-group-text"
-                                        id="inputGroupFileAddon01"
-                                    >
-                                        Upload
-                                    </span>
-                                </div>
-                                <div className="custom-file">
-                                    <input
-                                        type="file"
-                                        className="custom-file-input"
-                                        id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01"
-                                    />
-                                    <label
-                                        className="custom-file-label"
-                                        for="inputGroupFile01"
-                                    >
-                                        Choose Picture
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <Button type="submit">ADD PRODUCT</Button>
-                            </div>
-                        </Form>
-                    </div>
+function AdminPanel(props) {
+  const { allItems, storeAllProducts } = staticSelector.select(props);
+  let itemCounter = 0;
+
+  const [name, setName] = useState();
+  const [price, setPrice] = useState();
+  const [picture, setPicture] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState();
+  console.log(typeof picture);
+
+  useEffect(() => {
+    (async function getItems() {
+      await getAllItems().then((res) => storeAllProducts(res.data));
+    })();
+  }, []);
+
+  const handleAddProduct = async () => {
+    const uploadedPicture = new FormData();
+    uploadedPicture.append("Picture", picture, picture.name);
+    console.log(uploadedPicture);
+    const productDetails = {
+      name,
+      description,
+      category,
+      price,
+      uploadedPicture,
+    };
+
+    await addItem(productDetails).then((res) => console.log(res.data));
+  };
+
+  const handleDelete = async (productId) => {
+    await deleteItem(productId);
+
+    return await getAllItems().then((res) => storeAllProducts(res.data));
+  };
+
+  return (
+    <div className="admin-panel">
+      <Container>
+        <div className="admin-panel__add">
+          <div className="form-wrapper">
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Product Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter product name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter category name"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter description"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Enter price"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </Form.Group>
+              <div className="input-group mt-4 mb-5">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="inputGroupFileAddon01">
+                    Upload
+                  </span>
                 </div>
-                <div className="admin-panel__table">
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>S.N</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Rice</td>
-                                <td>Rd 2000</td>
-                                <td>
-                                    <div className="action-wrap">
-                                        <Button className="mr-4" variant="info">
-                                            Edit
-                                        </Button>
-                                        <Button variant="danger">Delete</Button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Rice</td>
-                                <td>Rd 2000</td>
-                                <td>
-                                    <div className="action-wrap">
-                                        <Button className="mr-4" variant="info">
-                                            Edit
-                                        </Button>
-                                        <Button variant="danger">Delete</Button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Rice</td>
-                                <td>Rd 2000</td>
-                                <td>
-                                    <div className="action-wrap">
-                                        <Button className="mr-4" variant="info">
-                                            Edit
-                                        </Button>
-                                        <Button variant="danger">Delete</Button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Rice</td>
-                                <td>Rd 2000</td>
-                                <td>
-                                    <div className="action-wrap">
-                                        <Button className="mr-4" variant="info">
-                                            Edit
-                                        </Button>
-                                        <Button variant="danger">Delete</Button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Rice</td>
-                                <td>Rd 2000</td>
-                                <td>
-                                    <div className="action-wrap">
-                                        <Button className="mr-4" variant="info">
-                                            Edit
-                                        </Button>
-                                        <Button variant="danger">Delete</Button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"
+                    onChange={(e) => setPicture(e.target.files[0])}
+                  />
+                  <label
+                    className="custom-file-label"
+                    htmlFor="inputGroupFile01"
+                  >
+                    {picture ? picture.name : "Choose Picture"}
+                  </label>
                 </div>
-            </Container>
+              </div>
+              <div className="text-center">
+                <Button onClick={handleAddProduct}>ADD PRODUCT</Button>
+              </div>
+            </Form>
+          </div>
         </div>
-    );
+
+        <div className="admin-panel__table">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>S.N</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allItems.map((item, key) => {
+                itemCounter += 1;
+
+                return (
+                  <tr key={key}>
+                    <td>{itemCounter}</td>
+                    <td>{item.name}</td>
+                    <td>${item.price}</td>
+                    <td>
+                      <div className="action-wrap">
+                        <Button className="mr-4" variant="info">
+                          Edit
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      </Container>
+    </div>
+  );
 }
 
-export default AdminPanel;
+const staticSelector = sl.object({
+  allItems: sl.list(
+    sl.object({
+      _id: sl.string(""),
+      name: sl.string(""),
+      description: sl.string(""),
+      price: sl.number(),
+    })
+  ),
+
+  storeAllProducts: sl.func(),
+});
+
+const mapStateToProps = (state) => {
+  return {
+    allItems: state.allItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    storeAllProducts: (products) =>
+      dispatch(actions.storeAllProducts(products)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel);

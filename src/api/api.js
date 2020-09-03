@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = "https://convenience-store-api.herokuapp.com/";
+import { ADMIN_ID, BASE_URL } from "../constants";
 
 export const register = (requestBody) => {
   return axios.post(`${BASE_URL}user/register`, requestBody);
@@ -10,10 +9,26 @@ export const login = (requestBody) => {
   return axios.post(`${BASE_URL}user/login`, requestBody);
 };
 
+export const logout = (requestBody) => {
+  return axios.get(`${BASE_URL}user/logout`, requestBody);
+};
+
 export const getCategories = () => {
   return axios.get(`${BASE_URL}post/category`);
 };
 
 export const getItemsByCategory = (categorySlug) => {
   return axios.get(`${BASE_URL}post/category/${categorySlug}`);
+};
+
+export const getAllItems = () => {
+  return axios.get(`${BASE_URL}post`);
+};
+
+export const addItem = (requestBody) => {
+  return axios.post(`${BASE_URL}admin/${ADMIN_ID}/post`, requestBody);
+};
+
+export const deleteItem = (productId) => {
+  return axios.get(`${BASE_URL}admin/${productId}/delete`);
 };

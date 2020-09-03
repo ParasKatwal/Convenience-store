@@ -43,6 +43,19 @@ export const cartedProductReducer = (state = [], action) => {
     case "STORE_CARTED_PRODUCT":
       return [...state, action.payload];
 
+    case "CLEAR_CART_PRODUCTS":
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+export const allProductReducer = (state = [], action) => {
+  switch (action.type) {
+    case "STORE_ALL_PRODUCTS":
+      return action.payload;
+
     default:
       return state;
   }

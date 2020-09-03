@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../redux/actions";
 import sl from "../components/selector";
 
-// IMAGES
-import p1 from "../img/p1.png";
+import { BASE_URL } from "../constants";
 
 function SingleProduct(props) {
   const { detail, storeSelectedProduct } = staticSelector.select(props);
@@ -15,7 +14,7 @@ function SingleProduct(props) {
       <Link to="/productlist/one" onClick={() => storeSelectedProduct(detail)}>
         <div className="singleProduct">
           <div className="singleProduct__img">
-            <img src={p1} alt="" />
+            <img src={`${BASE_URL}${detail.picture}`} alt="" />
           </div>
           <p>{detail.name}</p>
           <h3>{detail.price}</h3>

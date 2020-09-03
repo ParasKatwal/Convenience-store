@@ -9,12 +9,14 @@ import money from "../img/money.png";
 import payment from "../img/payment.png";
 
 // COMPONENTS
+import ProductList from "./ProductList";
 import SingleProduct from "../components/SingleProduct";
 
 function Home(props) {
   return (
     <>
       <div className="hero">
+        <ProductList />
         <Container>
           <div className="hero__bg">
             <img src={heroBg} alt="" />

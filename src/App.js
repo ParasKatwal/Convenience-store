@@ -23,6 +23,9 @@ import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/main.scss";
 
+//CONSTANT
+import { ADMIN_ID } from "./constants";
+
 function App(props) {
   if (window.performance.navigation.type === 1) {
     if (!props.userId) {
@@ -50,6 +53,10 @@ function App(props) {
       <TopNav />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/productlist/:slug" component={ProductDetails} />
+        {props.userId === ADMIN_ID && (
+          <Route exact path="/adminpanel" component={AdminPanel} />
+        )}
 
         {!props.userId ? (
           <React.Fragment>
@@ -58,15 +65,11 @@ function App(props) {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Route exact path="/productlist" component={ProductList} />
             <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/adminpanel" component={AdminPanel} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/productlist/:slug" component={ProductDetails} />
             <Route exact path="/cart" component={Cart} />
           </React.Fragment>
         )}
-
         <Route exact component={Error} />
       </Switch>
       <Footer />

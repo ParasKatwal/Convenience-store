@@ -17,6 +17,11 @@ function SignIn(props) {
   const handleLoginSuccess = (res) => {
     props.storeUserData(res.data);
     localStorage.setItem("userData", JSON.stringify(res.data));
+
+    if (res.data._id === "5f4de3497e7c738d43075c3c") {
+      return history.push("/adminpanel");
+    }
+
     return history.push("/");
   };
 

@@ -35,14 +35,23 @@ export const storeSelectedProduct = (product) => {
 };
 
 export const storeCartedProduct = (product) => {
-  const totalProduct = JSON.parse(localStorage.getItem("cartedProduct")) || [];
-  console.log(totalProduct);
-  totalProduct.push(product);
-
-  localStorage.setItem("cartedProduct", JSON.stringify([totalProduct]));
-
   return {
     type: "STORE_CARTED_PRODUCT",
     payload: product,
+  };
+};
+
+export const storeAllProducts = (products) => {
+  localStorage.setItem("allProducts", JSON.stringify(products));
+
+  return {
+    type: "STORE_ALL_PRODUCTS",
+    payload: products,
+  };
+};
+
+export const clearCartProduct = () => {
+  return {
+    type: "CLEAR_CART_PRODUCTS",
   };
 };

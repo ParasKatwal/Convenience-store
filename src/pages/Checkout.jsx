@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Container, Row, Col, Table, Form, Button } from "react-bootstrap";
 
 import sl from "../components/selector";
+import { BASE_URL } from "../constants";
 import * as actions from "../redux/actions";
 
 // IMAGES
@@ -28,7 +29,7 @@ function Checkout(props) {
               <Table striped bordered hover>
                 <thead className="text-center">
                   <tr>
-                    <th>ITEMS Items</th>
+                    <th>ITEMS</th>
                     <th>PRICE</th>
                     <th>QUANITY</th>
                   </tr>
@@ -36,7 +37,10 @@ function Checkout(props) {
                 <tbody className="text-center">
                   <tr>
                     <td className="name">
-                      <img src={p1} alt="" />
+                      <img
+                        src={`${BASE_URL}${selectedProduct.picture}`}
+                        alt=""
+                      />
                       <p>{selectedProduct.name}</p>
                     </td>
                     <td>${selectedProduct.price}</td>
