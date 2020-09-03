@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Container, Table, Button, Form } from "react-bootstrap";
 
@@ -30,7 +31,11 @@ function AdminPanel(props) {
     formData.append("price", price);
     formData.append("picture", picture);
 
-    await addItem(formData).then((res) => console.log(res.data));
+    await addItem(formData).then(async (res) => {
+      if (res.data._id) {
+        await getAllItems().then((res) => storeAllProducts(res.data));
+      }
+    });
   };
 
   const handleDelete = async (productId) => {
@@ -129,9 +134,12 @@ function AdminPanel(props) {
                     <td>${item.price}</td>
                     <td>
                       <div className="action-wrap">
-                        <Button className="mr-4" variant="info">
+                        <Link
+                          className="mr-4 btn btn-info"
+                          to={{ pathname: "/editpost", state: item }}
+                        >
                           Edit
-                        </Button>
+                        </Link>
                         <Button
                           variant="danger"
                           onClick={() => handleDelete(item._id)}
@@ -158,6 +166,7 @@ const staticSelector = sl.object({
       name: sl.string(""),
       description: sl.string(""),
       price: sl.number(),
+      category: sl.string(""),
     })
   ),
 

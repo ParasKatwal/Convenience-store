@@ -12,6 +12,7 @@ import ProductList from "./pages/ProductList";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import AdminPanel from "./pages/AdminPanel";
+import EditPost from "./pages/EditPost";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 
@@ -52,13 +53,21 @@ function App(props) {
     <>
       <TopNav />
       <Switch>
+        {props.userId === ADMIN_ID ? (
+          <Route exact path="/" component={AdminPanel} />
+        ) : (
+          <Route exact path="/" component={Home} />
+        )}
         <Route exact path="/" component={Home} />
         <Route exact path="/productlist/:slug" component={ProductDetails} />
         {props.userId === ADMIN_ID && (
-          <Route exact path="/adminpanel" component={AdminPanel} />
+          <React.Fragment>
+            <Route exact path="/adminpanel" component={AdminPanel} />
+            <Route exact path="/editpost" component={EditPost} />
+          </React.Fragment>
         )}
 
-        {!props.userId ? (
+        {!props.userId && props.userId !== ADMIN_ID ? (
           <React.Fragment>
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/register" component={Register} />

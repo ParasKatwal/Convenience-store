@@ -18,7 +18,7 @@ export const getCategories = () => {
 };
 
 export const getItemsByCategory = (categorySlug) => {
-  return axios.get(`${BASE_URL}post/category/${categorySlug}`);
+  return axios.get(`${BASE_URL}post/category/${categorySlug}/posts`);
 };
 
 export const getAllItems = () => {
@@ -31,4 +31,8 @@ export const addItem = (requestBody) => {
 
 export const deleteItem = (productId) => {
   return axios.get(`${BASE_URL}admin/${productId}/delete`);
+};
+
+export const editItem = (productId, requestBody) => {
+  return axios.post(`${BASE_URL}admin/${productId}/edit`, requestBody);
 };
