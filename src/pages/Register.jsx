@@ -10,15 +10,18 @@ function Register(props) {
   const [email, setEmail] = useState();
   const [password, setPw] = useState();
   const [password2, setPw2] = useState();
+  const [isRegistering, toggleIsRegistering] = useState(false);
   const [termsAgree, toggleTermsAgree] = useState(false);
 
   const handleSubmit = async () => {
+    toggleIsRegistering(true);
     await register({ email, password, password2 }).then((res) =>
       handleRegisterSuccess(res)
     );
   };
 
   const handleRegisterSuccess = (res) => {
+    toggleIsRegistering(false);
     props.storeUserData(res.data);
     localStorage.setItem("userData", JSON.stringify(res.data));
     return history.push("/");
@@ -73,10 +76,15 @@ function Register(props) {
                 <div className="text-center mt-4">
                   <Button
                     variant="primary"
-                    disabled={!termsAgree}
+                    disabled={!termsAgree || isRegistering}
                     onClick={handleSubmit}
                   >
                     Create Account
+                    <div
+                      className={`loader d-none ${
+                        isRegistering && "d-inline-block"
+                      }`}
+                    ></div>
                   </Button>
                 </div>
 

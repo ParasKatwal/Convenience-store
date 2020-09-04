@@ -16,6 +16,8 @@ function AdminPanel(props) {
   const [picture, setPicture] = useState();
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
+  const [isAddingProduct, toggleIsAddingProduct] = useState(false);
+  const [isDeletingProduct, toggleIsDeletingProduct] = useState(false);
 
   useEffect(() => {
     (async function getItems() {
@@ -24,6 +26,7 @@ function AdminPanel(props) {
   }, []);
 
   const handleAddProduct = async () => {
+    toggleIsAddingProduct(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -33,15 +36,20 @@ function AdminPanel(props) {
 
     await addItem(formData).then(async (res) => {
       if (res.data._id) {
+        toggleIsAddingProduct(false);
         await getAllItems().then((res) => storeAllProducts(res.data));
       }
     });
   };
 
   const handleDelete = async (productId) => {
+    toggleIsDeletingProduct(true);
     await deleteItem(productId);
 
-    return await getAllItems().then((res) => storeAllProducts(res.data));
+    return await getAllItems().then((res) => {
+      toggleIsDeletingProduct(false);
+      return storeAllProducts(res.data);
+    });
   };
 
   return (
@@ -107,7 +115,17 @@ function AdminPanel(props) {
                 </div>
               </div>
               <div className="text-center">
-                <Button onClick={handleAddProduct}>ADD PRODUCT</Button>
+                <Button
+                  onClick={handleAddProduct}
+                  disabled={isAddingProduct || isDeletingProduct}
+                >
+                  ADD PRODUCT
+                  <div
+                    className={`loader ml-2 d-none ${
+                      isAddingProduct && "d-inline-block"
+                    }`}
+                  ></div>
+                </Button>
               </div>
             </Form>
           </div>
@@ -142,9 +160,15 @@ function AdminPanel(props) {
                         </Link>
                         <Button
                           variant="danger"
+                          disabled={isAddingProduct || isDeletingProduct}
                           onClick={() => handleDelete(item._id)}
                         >
                           Delete
+                          <div
+                            className={`loader ml-2 d-none ${
+                              isDeletingProduct && "d-inline-block"
+                            }`}
+                          ></div>
                         </Button>
                       </div>
                     </td>

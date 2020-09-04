@@ -11,12 +11,14 @@ function EditPost(props) {
   const [itemPrice, setPrice] = useState();
   const [itemCategory, setCategory] = useState();
   const [itemDescription, setDescription] = useState();
+  const [isEditingProduct, toggleIsEditingProduct] = useState(false);
 
   const { name, _id, category, description, price } = staticSelector.select(
     props.location.state
   );
 
   const handleEditProduct = async () => {
+    toggleIsEditingProduct(true);
     const editedData = {
       name: itemName || name,
       description: itemDescription || description,
@@ -24,8 +26,8 @@ function EditPost(props) {
       price: itemPrice || price,
     };
 
-    console.log(editedData);
     await editItem(_id, editedData).then((res) => {
+      toggleIsEditingProduct(false);
       if (res.data._id) {
         history.push("/adminPanel");
       }
@@ -78,7 +80,14 @@ function EditPost(props) {
               </Form.Group>
 
               <div className="text-center">
-                <Button onClick={handleEditProduct}>EDIT PRODUCT</Button>
+                <Button onClick={handleEditProduct} disabled={isEditingProduct}>
+                  EDIT PRODUCT{" "}
+                  <div
+                    className={`loader ml-2 d-none ${
+                      isEditingProduct && "d-inline-block"
+                    }`}
+                  ></div>
+                </Button>
               </div>
             </Form>
           </div>

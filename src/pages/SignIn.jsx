@@ -9,12 +9,15 @@ import { login } from "../api";
 function SignIn(props) {
   const [email, setEmail] = useState();
   const [password, setPw] = useState();
+  const [isLogging, toggleIsLogging] = useState(false);
 
   const handleSubmit = async () => {
+    toggleIsLogging(true);
     await login({ email, password }).then((res) => handleLoginSuccess(res));
   };
 
   const handleLoginSuccess = (res) => {
+    toggleIsLogging(false);
     props.storeUserData(res.data);
     localStorage.setItem("userData", JSON.stringify(res.data));
 
@@ -55,8 +58,17 @@ function SignIn(props) {
                 </Form.Group>
 
                 <div className="text-center">
-                  <Button variant="primary" onClick={handleSubmit}>
+                  <Button
+                    variant="primary"
+                    disabled={isLogging}
+                    onClick={handleSubmit}
+                  >
                     Submit
+                    <div
+                      className={`loader ml-2 d-none ${
+                        isLogging && "d-inline-block"
+                      }`}
+                    ></div>
                   </Button>
                 </div>
                 <div className="py-4 text-center">
