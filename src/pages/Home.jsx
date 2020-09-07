@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 // IMAGES
-import heroBg from "../img/heroBg.png";
+import heroBg from "../img/herobg.png";
 import cheap from "../img/cheap.png";
 import hour from "../img/hour.png";
 import money from "../img/money.png";
